@@ -27,6 +27,21 @@ class SimpleFromObject
 }
 
 
+class SinglePublicObject
+{
+    use FromArray;
+
+    public string $bar;
+
+    /**
+     * @return string
+     */
+    public function getBar(): string
+    {
+        return $this->bar;
+    }
+}
+
 class SimpleToObject
 {
     use FromArray;

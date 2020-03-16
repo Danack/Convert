@@ -9,6 +9,9 @@ namespace ConvertTest;
  */
 class FromArrayTest extends BaseTestCase
 {
+    /**
+     * @covers \Convert\FromArray::fromArray
+     */
     public function testWorks()
     {
         $fooValue = 123;
@@ -22,6 +25,17 @@ class FromArrayTest extends BaseTestCase
         $object = SimpleFromObject::fromArray($data);
 
         $this->assertSame($fooValue, $object->getFoo());
+        $this->assertSame($barValue, $object->getBar());
+    }
+
+    public function testPublicDoesntNeedMakingAccessible()
+    {
+        $barValue = 'rab_124';
+        $data = [
+            'bar' => $barValue,
+        ];
+
+        $object = SinglePublicObject::fromArray($data);
         $this->assertSame($barValue, $object->getBar());
     }
 }

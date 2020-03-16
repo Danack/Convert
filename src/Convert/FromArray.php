@@ -34,7 +34,7 @@ trait FromArray
                 $property->setAccessible(false);
             }
             else {
-                $property->setValue($data[$key]);
+                $property->setValue($instance, $data[$key]);
             }
         }
 

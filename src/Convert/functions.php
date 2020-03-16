@@ -2,9 +2,10 @@
 
 declare(strict_types = 1);
 
+namespace Convert;
+
 /**
- * @param $value
- *
+ * @param mixed $value
  * @return array{string, null}|array{null, mixed}
  */
 function convertToValue($value)
@@ -15,6 +16,7 @@ function convertToValue($value)
             $value
         ];
     }
+
     if ($value === null) {
         return [
             null,
@@ -29,6 +31,7 @@ function convertToValue($value)
             $callable()
         ];
     }
+
     if (is_object($value) === true) {
         if ($value instanceof \DateTime) {
             // Format as Atom time with microseconds
@@ -71,19 +74,20 @@ function convertToValue($value)
     ];
 }
 
-function json_decode_safe($json)
+/**
+ * @param string $json
+ * @return mixed
+ * @throws \Convert\JsonDecodeException
+ */
+function json_decode_safe(string $json)
 {
-    if ($json === null) {
-        throw new \Exception("Error decoding JSON: cannot decode null.");
-    }
-
     $data = json_decode($json, true);
 
     if (json_last_error() === JSON_ERROR_NONE) {
         return $data;
     }
 
-    throw new \Exception("Failed to decode json: " . json_last_error_msg());
+    throw new JsonDecodeException("Failed to decode json: " . json_last_error_msg());
 //    $parser = new \Seld\JsonLint\JsonParser();
 //    $parsingException = $parser->lint($json);
 //
@@ -99,17 +103,19 @@ function json_decode_safe($json)
 }
 
 /**
- * @param $data
+ * @param array<mixed> $data
  * @param int $options
  * @return string
- * @throws Exception
+ * @throws JsonEncodeException
  */
-function json_encode_safe($data, $options = 0): string
+function json_encode_safe(array $data, int $options = 0): string
 {
     $result = json_encode($data, $options);
 
     if ($result === false) {
-        throw new \Exception("Failed to encode data as json: " . json_last_error_msg());
+        throw new JsonEncodeException(
+            "Failed to encode data as json: " . json_last_error_msg()
+        );
     }
 
     return $result;

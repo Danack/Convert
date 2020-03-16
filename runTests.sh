@@ -9,15 +9,15 @@ php vendor/bin/phpunit -c test/phpunit.xml
 
 php ./phpstan.phar analyze -c ./phpstan.neon -l 7 src
 
-set +e
+php ./psalm.phar
 
-php vendor/bin/infection --configuration=infection.json.dist --log-verbosity=0 --only-covered --min-covered-msi=90
+#php vendor/bin/infection --configuration=infection.json.dist --log-verbosity=all --only-covered --min-covered-msi=90
 
-infection_exit_code=$?
+#infection_exit_code=$?
 
-set -e
+#set -e
 
-if [ "$infection_exit_code" -ne "0" ]; then echo "Infection failed"; cat infection-log.txt;  exit "$infection_exit_code"; fi
+#if [ "$infection_exit_code" -ne "0" ]; then echo "Infection failed"; cat infection-log.txt;  exit "$infection_exit_code"; fi
 
 echo "Tests completed without problem"
 
