@@ -1,0 +1,10 @@
+version: "3"
+services:
+  run_php_codesniffer:
+    build: containers/run_php_codesniffer
+    volumes:
+      - .:/var/app
+  run_php_tests:
+    build: containers/run_php_tests
+    volumes:
+      - .:/var/app
