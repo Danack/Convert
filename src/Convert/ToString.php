@@ -15,7 +15,7 @@ trait ToString
                 continue;
             }
 
-            [$error, $value] = \convertToValue($name, $value);
+            [$error, $value] = convert_to_value($value);
             $data[$name] = $value;
         }
 

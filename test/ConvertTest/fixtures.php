@@ -7,6 +7,18 @@ namespace ConvertTest;
 use Convert\FromArray;
 use Convert\ToArray;
 
+class FailsConversion
+{
+    use ToArray;
+
+    private $nonToArrayValue;
+
+    public function __construct()
+    {
+        $this->nonToArrayValue = new \StdClass();
+    }
+}
+
 class SimpleFromObject
 {
     use FromArray;
@@ -44,7 +56,7 @@ class SinglePublicObject
 
 class SimpleToObject
 {
-    use FromArray;
+    use ToArray;
 
     private int $foo;
 
@@ -55,9 +67,30 @@ class SimpleToObject
      * @param $foo
      * @param $bar
      */
-    public function __construct($foo, $bar)
+    public function __construct(int $foo, string $bar)
     {
         $this->foo = $foo;
+        $this->bar = $bar;
+    }
+}
+
+
+class UnderscorePropertyObject
+{
+    use ToArray;
+
+    private int $__foo;
+
+    private string $bar;
+
+    /**
+     *
+     * @param $foo
+     * @param $bar
+     */
+    public function __construct($foo, $bar)
+    {
+        $this->__foo = $foo;
         $this->bar = $bar;
     }
 }

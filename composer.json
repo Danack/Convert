@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-      "ext-json": "*"
+      "ext-json": "*",
+      "seld/jsonlint": "^1.7.2"
     },
     "require-dev": {
         "danack/coding-standard": "0.1.0",

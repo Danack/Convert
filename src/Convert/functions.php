@@ -8,7 +8,7 @@ namespace Convert;
  * @param mixed $value
  * @return array{string, null}|array{null, mixed}
  */
-function convertToValue($value)
+function convert_to_value($value)
 {
     if (is_scalar($value) === true) {
         return [
@@ -33,7 +33,7 @@ function convertToValue($value)
     }
 
     if (is_object($value) === true) {
-        if ($value instanceof \DateTime) {
+        if ($value instanceof \DateTimeInterface) {
             // Format as Atom time with microseconds
             return [
                 null,
@@ -45,7 +45,12 @@ function convertToValue($value)
     if (is_array($value) === true) {
         $values = [];
         foreach ($value as $key => $entry) {
-            $values[$key] = convertToValue($entry);
+            [$error, $value] = convert_to_value($entry);
+            if ($error !== null) {
+                return [$error, null];
+            }
+
+            $values[$key] = $value;
         }
 
         return [
@@ -57,9 +62,8 @@ function convertToValue($value)
     if (is_object($value) === true) {
         return [
             sprintf(
-                "Unsupported type [%s] of class [%s] for toArray.",
-                gettype($value),
-                get_class($value)
+                "Object of type [%s] does not have toArray method and isn't supported type.",
+                gettype($value)
             ),
             null
         ];
@@ -74,6 +78,7 @@ function convertToValue($value)
     ];
 }
 
+
 /**
  * @param string $json
  * @return mixed
@@ -87,20 +92,27 @@ function json_decode_safe(string $json)
         return $data;
     }
 
-    throw new JsonDecodeException("Failed to decode json: " . json_last_error_msg());
-//    $parser = new \Seld\JsonLint\JsonParser();
-//    $parsingException = $parser->lint($json);
-//
-//    if ($parsingException !== null) {
-//        throw $parsingException;
-//    }
-//
-//    if ($data === null) {
-//        throw new \Osf\Exception\JsonException("Error decoding JSON: null returned.");
-//    }
+    $lastError = json_last_error_msg();
 
-//    throw new \Osf\Exception\JsonException("Error decoding JSON: " . json_last_error_msg());
+    $parser = new \Seld\JsonLint\JsonParser();
+    $parsingException = $parser->lint($json);
+
+    if ($parsingException !== null) {
+        throw JsonDecodeException::fromParsingException($parsingException);
+    }
+
+    // This code should never be reached. They would only happen if there
+    // was a bug in Seld\JsonLint\JsonParser
+    // @codeCoverageIgnoreStart
+    $message = sprintf(
+        "Error decoding JSON: %s and jsonlint failed to detect the error",
+        $lastError
+    );
+
+    throw JsonDecodeException::createUnknown($message);
+    // @codeCoverageIgnoreEnd
 }
+
 
 /**
  * @param array<mixed> $data

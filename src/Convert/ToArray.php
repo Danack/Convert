@@ -7,22 +7,26 @@ namespace Convert;
 trait ToArray
 {
     /**
-     * @return array
-     * @throws \Exception
+     * @return array<string, mixed>
+     * @throws ConvertFailedException
      */
     public function toArray(): array
     {
         $data = [];
         foreach ($this as $name => $value) {
-            if (strpos($name, '__') === 0) {
-                //Skip
+            if (strpos($name, '_') === 0) {
+                // Skip any properties that start with underscore
                 continue;
             }
 
-            [$error, $value] = \convertToValue($value);
+            [$error, $value] = convert_to_value($value);
 
             if ($error !== null) {
-                throw new Exception("Problem converting object property $name to value: " . $error);
+                throw ConvertFailedException::forKey(
+                    $name,
+                    $error,
+                    $this
+                );
             }
 
             $data[$name] = $value;

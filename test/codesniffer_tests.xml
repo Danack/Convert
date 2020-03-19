@@ -24,6 +24,14 @@
       <exclude-pattern>ConvertTest/fixtures.php</exclude-pattern>
     </rule>
 
+    <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
+        <exclude-pattern>ConvertTest/fixtures.php</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR2.Namespaces.UseDeclaration.MultipleDeclarations">
+        <exclude-pattern>*.php</exclude-pattern>
+    </rule>
+
     <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
         <exclude-pattern>ConvertTest/fixtures.php</exclude-pattern>
     </rule>

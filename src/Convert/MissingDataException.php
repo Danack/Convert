@@ -6,6 +6,14 @@ namespace Convert;
 
 class MissingDataException extends ConvertException
 {
+    private function __construct(
+        string $message = "",
+        int $code = 0,
+        \Throwable $previous = null
+    ) {
+        parent::__construct($message, $code, $previous);
+    }
+
     /**
      * @param string $missingKey
      * @param array<string> $data
