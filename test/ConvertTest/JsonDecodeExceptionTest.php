@@ -11,11 +11,23 @@ use Convert\JsonDecodeException;
  */
 class JsonDecodeExceptionTest extends BaseTestCase
 {
+    /**
+     * @covers \Convert\JsonDecodeException
+     */
+    public function testCreateUnknownWorks()
+    {
+        $message = "An weird unknown error occurred.";
+
+        $jsonDecodeException = JsonDecodeException::createUnknown($message);
+        $this->assertSame($message, $jsonDecodeException->getMessage());
+        $this->assertSame(0, $jsonDecodeException->getCode());
+        $this->assertNull($jsonDecodeException->getPrevious());
+    }
 
     /**
      * @covers \Convert\JsonDecodeException
      */
-    public function testWorks()
+    public function testFromParsingExceptionWorks()
     {
         $invalidJson = '{"foo":"invalid json string';
 

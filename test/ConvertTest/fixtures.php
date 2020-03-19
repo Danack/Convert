@@ -5,7 +5,9 @@ declare(strict_types = 1);
 namespace ConvertTest;
 
 use Convert\FromArray;
+use Convert\FromString;
 use Convert\ToArray;
+use Convert\ToString;
 
 class FailsConversion
 {
@@ -54,9 +56,60 @@ class SinglePublicObject
     }
 }
 
-class SimpleToObject
+class SimpleToArrayObject
 {
     use ToArray;
+
+    private int $foo;
+
+    private string $bar;
+
+    /**
+     *
+     * @param $foo
+     * @param $bar
+     */
+    public function __construct(int $foo, string $bar)
+    {
+        $this->foo = $foo;
+        $this->bar = $bar;
+    }
+}
+
+class SimpleFromStringObject
+{
+    use FromString;
+
+    private int $foo;
+
+    private string $bar;
+
+    /**
+     *
+     * @param $foo
+     * @param $bar
+     */
+    public function __construct(int $foo, string $bar)
+    {
+        $this->foo = $foo;
+        $this->bar = $bar;
+    }
+
+    public function getFoo(): int
+    {
+        return $this->foo;
+    }
+
+    public function getBar(): string
+    {
+        return $this->bar;
+    }
+}
+
+
+class SimpleToStringObject
+{
+    use ToString;
 
     private int $foo;
 

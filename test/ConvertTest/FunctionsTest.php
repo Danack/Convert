@@ -95,7 +95,7 @@ class FunctionsTest extends BaseTestCase
         $fooValue = 123;
         $barValue = 'foo_123';
 
-        $object = new SimpleToObject($fooValue, $barValue);
+        $object = new SimpleToArrayObject($fooValue, $barValue);
 
         [$error, $value] = convert_to_value($object);
         $this->assertNull($error);
@@ -121,7 +121,7 @@ class FunctionsTest extends BaseTestCase
 
             'foo' => $fooValue,
             'bar' => $barValue,
-            'object' => new SimpleToObject($fooValue, $barValue),
+            'object' => new SimpleToArrayObject($fooValue, $barValue),
         ];
 
         [$error, $value] = convert_to_value($inputValues);

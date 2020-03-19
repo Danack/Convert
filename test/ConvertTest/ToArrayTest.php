@@ -19,7 +19,7 @@ class ToArrayTest extends BaseTestCase
         $fooValue = 123;
         $barValue = 'rab_123';
 
-        $object = new SimpleToObject($fooValue, $barValue);
+        $object = new SimpleToArrayObject($fooValue, $barValue);
 
         $data = [
             'foo' => $fooValue,

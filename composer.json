@@ -14,7 +14,7 @@
       "seld/jsonlint": "^1.7.2"
     },
     "require-dev": {
-        "danack/coding-standard": "0.1.0",
+        "danack/coding-standard": "0.2.0",
         "infection/infection": "^0.15.3",
         "phpunit/phpunit": "9.0.1",
         "slevomat/coding-standard": "^4.8.4",

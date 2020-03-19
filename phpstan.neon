@@ -2,13 +2,4 @@ parameters:
   bootstrap: null
   autoload_files:
     - src/Convert/functions.php
-  excludes_analyse:
-#    - *lib/birke/*
-#    - *injectionParams/*
-  ignoreErrors:
-#    -
-#      message: '#Access to an undefined property Twilio\\Rest\\Client::\$messages.#'
-#      path: *Osf/Service/TwilioClient.php
-#    -
-#      message: '#Access to an undefined property Stripe\\ApiResource::\$id.#'
-#      path: *Osf/Service/StripeClient.php
+

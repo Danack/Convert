@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f3ee42e07b7c28f65dd630384b26f6ae",
+    "content-hash": "f3a379971d8b73dd46a32e9c1b3dfa8d",
     "packages": [
         {
             "name": "seld/jsonlint",
@@ -103,16 +103,16 @@
         },
         {
             "name": "danack/coding-standard",
-            "version": "0.1.0",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/coding-standard.git",
-                "reference": "e19605846fa3c19acbb09b5ed8d2cadc67b4ba0e"
+                "reference": "87cec5125d7fcc21e4728dee253dcf71876664be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/coding-standard/zipball/e19605846fa3c19acbb09b5ed8d2cadc67b4ba0e",
-                "reference": "e19605846fa3c19acbb09b5ed8d2cadc67b4ba0e",
+                "url": "https://api.github.com/repos/Danack/coding-standard/zipball/87cec5125d7fcc21e4728dee253dcf71876664be",
+                "reference": "87cec5125d7fcc21e4728dee253dcf71876664be",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +125,7 @@
                 "MIT"
             ],
             "description": "Danack Coding Standard for PHP_CodeSniffer complements Consistence Coding Standard by providing sniffs with additional checks.",
-            "time": "2019-07-22T16:56:09+00:00"
+            "time": "2020-03-19T21:27:07+00:00"
         },
         {
             "name": "doctrine/instantiator",
