@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace ConvertTest;
 
 use Convert\FromArray;
-use Convert\FromString;
+use Convert\FromJson;
 use Convert\ToArray;
-use Convert\ToString;
+use Convert\ToJson;
 
 class FailsConversion
 {
@@ -78,7 +78,7 @@ class SimpleToArrayObject
 
 class SimpleFromStringObject
 {
-    use FromString;
+    use FromJson;
 
     private int $foo;
 
@@ -109,7 +109,7 @@ class SimpleFromStringObject
 
 class SimpleToStringObject
 {
-    use ToString;
+    use ToJson;
 
     private int $foo;
 

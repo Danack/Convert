@@ -7,10 +7,10 @@ namespace ConvertTest;
 /**
  * @coversNothing
  */
-class FromStringTest extends BaseTestCase
+class FromJsonTest extends BaseTestCase
 {
     /**
-     * @covers \Convert\FromString::fromString
+     * @covers \Convert\FromJson::fromJson
      */
     public function testToStringWorks()
     {
@@ -22,7 +22,7 @@ class FromStringTest extends BaseTestCase
             'bar' => $barValue,
         ];
 
-        $object = SimpleFromStringObject::fromString(json_encode($data));
+        $object = SimpleFromStringObject::fromJson(json_encode($data));
 
         $this->assertSame($fooValue, $object->getFoo());
         $this->assertSame($barValue, $object->getBar());

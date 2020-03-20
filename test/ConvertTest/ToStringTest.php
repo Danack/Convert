@@ -10,7 +10,7 @@ namespace ConvertTest;
 class ToStringTest extends BaseTestCase
 {
     /**
-     * @covers \Convert\ToString::toString
+     * @covers \Convert\ToJson::toJson
      */
     public function testToStringWorks()
     {
@@ -24,6 +24,6 @@ class ToStringTest extends BaseTestCase
             'bar' => $barValue,
         ];
 
-        $this->assertSame(json_encode($data), $object->toString());
+        $this->assertSame(json_encode($data), $object->toJson());
     }
 }

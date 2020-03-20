@@ -4,11 +4,11 @@ declare(strict_types = 1);
 
 namespace Convert;
 
-trait ToString
+trait ToJson
 {
     use ToArray;
 
-    public function toString()
+    public function toJson()
     {
         return json_encode_safe($this->toArray());
     }
