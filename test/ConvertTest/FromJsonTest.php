@@ -12,7 +12,7 @@ class FromJsonTest extends BaseTestCase
     /**
      * @covers \Convert\FromJson::fromJson
      */
-    public function testToStringWorks()
+    public function testToJsonWorks()
     {
         $fooValue = 123;
         $barValue = 'rab_123';
@@ -22,7 +22,7 @@ class FromJsonTest extends BaseTestCase
             'bar' => $barValue,
         ];
 
-        $object = SimpleFromStringObject::fromJson(json_encode($data));
+        $object = SimpleFromJsonObject::fromJson(json_encode($data));
 
         $this->assertSame($fooValue, $object->getFoo());
         $this->assertSame($barValue, $object->getBar());

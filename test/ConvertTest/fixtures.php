@@ -76,7 +76,7 @@ class SimpleToArrayObject
     }
 }
 
-class SimpleFromStringObject
+class SimpleFromJsonObject
 {
     use FromJson;
 
@@ -107,7 +107,7 @@ class SimpleFromStringObject
 }
 
 
-class SimpleToStringObject
+class SimpleToJsonObject
 {
     use ToJson;
 

@@ -7,17 +7,17 @@ namespace ConvertTest;
 /**
  * @coversNothing
  */
-class ToStringTest extends BaseTestCase
+class ToJsonTest extends BaseTestCase
 {
     /**
      * @covers \Convert\ToJson::toJson
      */
-    public function testToStringWorks()
+    public function testToJsonWorks()
     {
         $fooValue = 123;
         $barValue = 'rab_123';
 
-        $object = new SimpleToStringObject($fooValue, $barValue);
+        $object = new SimpleToJsonObject($fooValue, $barValue);
 
         $data = [
             'foo' => $fooValue,
